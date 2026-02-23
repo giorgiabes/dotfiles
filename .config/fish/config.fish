@@ -5,7 +5,7 @@ if status is-interactive
 
     set fish_greeting
     set fish_cursor_insert line
-    set -x EDITOR nvim
+    set -x EDITOR mvim
     set -x _ZL_FZF_FLAG +s # make z.lua fuzzy by removing -e
 
     fish_vi_key_bindings
@@ -27,6 +27,7 @@ if status is-interactive
     alias rm=grm
     alias cp=gcp
     alias sed=gsed
+    alias gs=git-spice
     alias mvim='NVIM_APPNAME=nvim-minimax nvim'
     function grep # Needs to be function or fish overrules it
         ggrep --color=auto $argv
@@ -37,5 +38,6 @@ if status is-interactive
     end
 
     starship init fish | source
+    direnv hook fish | source
 
 end
