@@ -5,8 +5,7 @@ if status is-interactive
 
     set fish_greeting
     set fish_cursor_insert line
-    set -x EDITOR mvim
-    set -x _ZL_FZF_FLAG +s # make z.lua fuzzy by removing -e
+    set -x EDITOR nvim
 
     fish_vi_key_bindings
 
@@ -14,9 +13,6 @@ if status is-interactive
     fzf_configure_bindings --directory=\cf --processes=\cp --git_log=\cl --git_status=\cs
     set fzf_fd_opts --exclude Library
 
-    function fish_user_key_bindings
-        bind --mode insert \er 'z -I . ; commandline -f repaint'
-    end
 
     function multicd
         echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
@@ -24,14 +20,7 @@ if status is-interactive
     abbr --add dotdot --regex '^\.\.+$' --function multicd
 
     alias lg='lazygit'
-    alias rm=grm
-    alias cp=gcp
-    alias sed=gsed
     alias gs=git-spice
-    alias mvim='NVIM_APPNAME=nvim-minimax nvim'
-    function grep # Needs to be function or fish overrules it
-        ggrep --color=auto $argv
-    end
 
     if test -f ~/.config/fish/config.local.fish
         source ~/.config/fish/config.local.fish
